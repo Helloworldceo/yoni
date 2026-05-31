@@ -1,0 +1,2339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yonas Tsegaye Megra, Ph.D. | Nanotechnology & 2D Materials</title>
+    <meta name="description" content="Postdoctoral Research Fellow in 2D materials, molecular electronics, and nanofabrication. PhD from Sungkyunkwan University.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-deep: #0c0f0e;
+            --bg-surface: #141a18;
+            --bg-elevated: #1a221f;
+            --bg-card: #16201c;
+            --accent-primary: #10b981;
+            --accent-secondary: #f59e0b;
+            --accent-tertiary: #06b6d4;
+            --accent-glow: rgba(16, 185, 129, 0.15);
+            --text-primary: #f0fdf4;
+            --text-secondary: #a7f3d0;
+            --text-muted: #6b9e8a;
+            --text-dim: #4a7c6b;
+            --border: rgba(16, 185, 129, 0.08);
+            --border-hover: rgba(16, 185, 129, 0.25);
+            --gold: #fbbf24;
+            --gold-dim: #b45309;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--accent-primary);
+            color: var(--bg-deep);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+
+        /* ========== NAVIGATION ========== */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 0 2rem;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            background: rgba(12, 15, 14, 0.7);
+            backdrop-filter: blur(24px) saturate(1.2);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav.scrolled {
+            background: rgba(12, 15, 14, 0.95);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            box-shadow: 0 0 12px var(--accent-primary);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 0.6rem 1.25rem;
+            background: var(--accent-primary);
+            color: var(--bg-deep) !important;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
+        }
+
+        .nav-cta::after { display: none !important; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 120px 2rem 60px;
+            overflow: hidden;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(16, 185, 129, 0.07) 1px, transparent 0);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 80%);
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .hero-orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent-primary);
+            top: -10%; right: -5%;
+            animation: orb-float 12s ease-in-out infinite;
+        }
+
+        .hero-orb-2 {
+            width: 400px; height: 400px;
+            background: var(--accent-secondary);
+            bottom: -10%; left: -5%;
+            animation: orb-float 12s ease-in-out infinite reverse;
+        }
+
+        .hero-orb-3 {
+            width: 300px; height: 300px;
+            background: var(--accent-tertiary);
+            top: 40%; left: 30%;
+            opacity: 0.15;
+            animation: orb-float 15s ease-in-out infinite;
+            animation-delay: -5s;
+        }
+
+        .hero-content {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 1.25rem;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 1.25rem;
+            letter-spacing: -2px;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero-title .line-1 { color: var(--text-primary); }
+        .hero-title .line-2 {
+            background: linear-gradient(135deg, var(--accent-primary), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.85;
+            margin-bottom: 2.5rem;
+            max-width: 520px;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            border: none;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), #059669);
+            color: white;
+            box-shadow: 0 4px 24px rgba(16, 185, 129, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1.5px solid var(--border-hover);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-primary);
+            background: rgba(16, 185, 129, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+            color: var(--bg-deep);
+            box-shadow: 0 4px 24px rgba(251, 191, 36, 0.2);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 32px rgba(251, 191, 36, 0.35);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 340px;
+        }
+
+        .profile-card {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 
+                0 24px 80px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255,255,255,0.03);
+            transition: all 0.4s ease;
+        }
+
+        .profile-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-8px);
+            box-shadow: 
+                0 32px 100px rgba(0, 0, 0, 0.6),
+                0 0 60px rgba(16, 185, 129, 0.08);
+        }
+
+        .profile-avatar {
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--bg-deep);
+            position: relative;
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.3);
+                overflow: hidden;
+            }
+
+            .profile-avatar img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
+        }
+
+        .profile-avatar-ring {
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, var(--accent-primary), var(--gold)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: rotate-ring 8s linear infinite;
+        }
+
+        .profile-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .profile-role {
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .profile-divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--gold));
+            border-radius: 2px;
+        }
+
+        .profile-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .profile-social {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .profile-social a {
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .profile-social a:hover {
+            background: var(--accent-primary);
+            color: var(--bg-deep);
+            border-color: var(--accent-primary);
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        /* ========== STATS MARQUEE ========== */
+        .stats-section {
+            padding: 3rem 0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .stats-track {
+            display: flex;
+            gap: 4rem;
+            animation: marquee 20s linear infinite;
+            width: max-content;
+        }
+
+        .stats-track:hover {
+            animation-play-state: paused;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0 2rem;
+            white-space: nowrap;
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 30px;
+            background: var(--border-hover);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ========== SECTIONS ========== */
+        .section {
+            padding: 100px 2rem;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-glow);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 50px;
+            color: var(--accent-primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            max-width: 550px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* ========== ABOUT ========== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text strong {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .highlight-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.75rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .highlight-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px rgba(16, 185, 129, 0.05);
+        }
+
+        .highlight-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(251,191,36,0.1));
+            border: 1px solid rgba(16,185,129,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 1.3rem;
+            margin-bottom: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover .highlight-icon {
+            background: linear-gradient(135deg, var(--accent-primary), var(--gold));
+            color: var(--bg-deep);
+            transform: scale(1.1);
+        }
+
+        .highlight-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+        }
+
+        .highlight-desc {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* ========== RESEARCH FOCUS ========== */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .research-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(16,185,129,0.03), rgba(251,191,36,0.03));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .research-card:hover::after {
+            opacity: 1;
+        }
+
+        .research-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-8px);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+        }
+
+        .research-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .research-title {
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .research-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .research-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .research-tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .research-card:hover .research-tag {
+            border-color: var(--border-hover);
+            color: var(--text-secondary);
+        }
+
+        /* ========== TIMELINE ========== */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-primary), var(--gold), transparent);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3.5rem;
+            padding-left: 2.5rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.4rem;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: var(--bg-deep);
+            border: 3px solid var(--accent-primary);
+            transform: translateX(-6px);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        .timeline-item:hover::before {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 6px rgba(251, 191, 36, 0.15);
+            transform: translateX(-6px) scale(1.2);
+        }
+
+        .timeline-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 1rem;
+            background: var(--accent-glow);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 50px;
+            color: var(--accent-primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-role {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.35rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .timeline-org {
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .timeline-location {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.8;
+        }
+
+        .timeline-desc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-desc li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* ========== PUBLICATIONS ========== */
+        .pubs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .pub-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .pub-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--gold), var(--accent-tertiary));
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .pub-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pub-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.4), 0 0 40px rgba(16, 185, 129, 0.05);
+        }
+
+        .pub-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .pub-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(251,191,36,0.08));
+            border: 1px solid rgba(16,185,129,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .pub-card:hover .pub-icon {
+            background: linear-gradient(135deg, var(--accent-primary), var(--gold));
+            color: var(--bg-deep);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .pub-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.45;
+            flex: 1;
+        }
+
+        .pub-journal {
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .pub-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .pub-tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .pub-card:hover .pub-tag {
+            border-color: var(--border-hover);
+            color: var(--text-secondary);
+        }
+
+        /* ========== SKILLS ========== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::after {
+            content: '';
+            position: absolute;
+            top: -50%; right: -50%;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(16,185,129,0.03), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .skill-category:hover::after {
+            opacity: 1;
+        }
+
+        .skill-category:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-icon {
+            width: 50px; height: 50px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(251,191,36,0.08));
+            border: 1px solid rgba(16,185,129,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover .skill-icon {
+            background: linear-gradient(135deg, var(--accent-primary), var(--gold));
+            color: var(--bg-deep);
+            transform: scale(1.1);
+        }
+
+        .skill-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+        }
+
+        .skill-list {
+            list-style: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-list li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-list li:hover {
+            color: var(--text-secondary);
+            padding-left: 0.5rem;
+        }
+
+        .skill-list li i {
+            color: var(--gold);
+            font-size: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-list li:hover i {
+            transform: scale(1.5);
+        }
+
+        /* ========== EDUCATION ========== */
+        .edu-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edu-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .edu-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .edu-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .edu-icon {
+            width: 60px; height: 60px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(251,191,36,0.08));
+            border: 1px solid rgba(16,185,129,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .edu-card:hover .edu-icon {
+            background: linear-gradient(135deg, var(--accent-primary), var(--gold));
+            color: var(--bg-deep);
+            transform: scale(1.1);
+        }
+
+        .edu-degree {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .edu-field {
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .edu-school {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 1rem;
+        }
+
+        .edu-year {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            background: var(--accent-glow);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 50px;
+            color: var(--accent-primary);
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        /* ========== AFFILIATIONS ========== */
+        .affiliations-track {
+            display: flex;
+            gap: 3rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+
+        .affiliations-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .affiliation-item {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .affiliation-item:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+        }
+
+        .affiliation-logo {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-deep);
+            font-weight: 700;
+            font-size: 0.9rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .affiliation-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .affiliation-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .affiliation-role {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-section {
+            background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-surface) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -200px; right: -200px;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            filter: blur(150px);
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(8px);
+            background: var(--bg-elevated);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .contact-link i {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(251,191,36,0.08));
+            border: 1px solid rgba(16,185,129,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover i {
+            background: linear-gradient(135deg, var(--accent-primary), var(--gold));
+            color: var(--bg-deep);
+        }
+
+        .contact-link-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-link-label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-link-value {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text-primary);
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--gold));
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1.1rem;
+            background: var(--bg-surface);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-dim);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            background: var(--bg-surface);
+        }
+
+        .footer-text {
+            color: var(--text-dim);
+            font-size: 0.88rem;
+        }
+
+        .footer-heart {
+            color: var(--gold);
+            display: inline-block;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        @keyframes orb-float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(20px, -30px) scale(1.05); }
+            66% { transform: translate(-15px, 15px) scale(0.95); }
+        }
+
+        @keyframes rotate-ring {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* ========== SCROLL REVEAL ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+            .hero-desc { margin: 0 auto 2rem; }
+            .hero-cta { justify-content: center; }
+            .hero-visual { order: -1; }
+            .about-grid,
+            .contact-grid { grid-template-columns: 1fr; }
+            .research-grid { grid-template-columns: repeat(2, 1fr); }
+            .skills-grid { grid-template-columns: 1fr; }
+            .edu-cards { grid-template-columns: 1fr; }
+            .pubs-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero { padding: 100px 1.5rem 40px; }
+            .hero-title { font-size: 2.6rem; }
+            .section { padding: 60px 1.5rem; }
+            .section-title { font-size: 2rem; }
+            .about-highlights { grid-template-columns: 1fr; }
+            .research-grid { grid-template-columns: 1fr; }
+            .timeline { padding-left: 1rem; }
+            .timeline-item { padding-left: 1.5rem; }
+            .profile-frame { width: 280px; }
+            .profile-card { padding: 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2rem; }
+            .hero-subtitle { font-size: 1.05rem; }
+            .btn { padding: 0.75rem 1.5rem; font-size: 0.85rem; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                Yonas<span style="color: var(--accent-primary);">.</span>
+                <span class="nav-logo-dot"></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact" class="nav-cta">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" style="display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(12,15,14,0.98); backdrop-filter: blur(20px); z-index: 999; border-bottom: 1px solid var(--border); padding: 2rem;">
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.5rem;">
+            <li><a href="#about" style="color: var(--text-muted); text-decoration: none; font-weight: 500;" onclick="closeMobileMenu()">About</a></li>
+            <li><a href="#research" style="color: var(--text-muted); text-decoration: none; font-weight: 500;" onclick="closeMobileMenu()">Research</a></li>
+            <li><a href="#experience" style="color: var(--text-muted); text-decoration: none; font-weight: 500;" onclick="closeMobileMenu()">Experience</a></li>
+            <li><a href="#publications" style="color: var(--text-muted); text-decoration: none; font-weight: 500;" onclick="closeMobileMenu()">Publications</a></li>
+            <li><a href="#skills" style="color: var(--text-muted); text-decoration: none; font-weight: 500;" onclick="closeMobileMenu()">Skills</a></li>
+            <li><a href="#education" style="color: var(--text-muted); text-decoration: none; font-weight: 500;" onclick="closeMobileMenu()">Education</a></li>
+            <li><a href="#contact" class="nav-cta" style="display: inline-block; text-align: center;" onclick="closeMobileMenu()">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Currently at XJTLU, China
+                </div>
+                <h1 class="hero-title">
+                    <span class="line-1">Yonas Tsegaye</span><br>
+                    <span class="line-2">Megra, Ph.D.</span>
+                </h1>
+                <p class="hero-subtitle">Postdoctoral Research Fellow in 2D Materials & Molecular Electronics</p>
+                <p class="hero-desc">
+                    Advancing nanotechnology through molecular-scale charge transport, 
+                    interfacial phenomena, and next-generation device engineering. 
+                    Specializing in CVD synthesis, nanofabrication, and AI-integrated sensing systems.
+                </p>
+                <div class="hero-cta">
+                    <a href="#publications" class="btn btn-primary">
+                        <i class="fas fa-flask"></i> View Research
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i> Get in Touch
+                    </a>
+                    <a href="#" class="btn btn-gold" onclick="alert('CV download coming soon!'); return false;">
+                        <i class="fas fa-download"></i> Download CV
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="profile-frame">
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <img src="photo.jpeg" alt="Portrait of Yonas Tsegaye Megra">
+                            <div class="profile-avatar-ring"></div>
+                        </div>
+                        <div class="profile-name">Yonas Tsegaye</div>
+                        <div class="profile-role">Ph.D. Mechanical Engineering<br>2D Materials Specialist</div>
+                        <div class="profile-divider"></div>
+                        <div class="profile-location">
+                            <i class="fas fa-map-marker-alt" style="color: var(--accent-primary);"></i>
+                            Suzhou, Jiangsu, China
+                        </div>
+                        <div class="profile-social">
+                            <a href="https://www.linkedin.com/in/yonas-tsegaye-megra-ph-d-9957b5124" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://sites.google.com/view/yonast/home" target="_blank" aria-label="Personal Site">
+                                <i class="fas fa-globe"></i>
+                            </a>
+                            <a href="mailto:yonas.tsegaye23@gmail.com" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="tel:+821046781421" aria-label="Phone">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Marquee -->
+    <div class="stats-section">
+        <div class="stats-track">
+            <div class="stat-item">
+                <span class="stat-number">10+</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Years of Research</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5+</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Peer-Reviewed Publications</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">4</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Research Institutions</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">3</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Postdoctoral Positions</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Countries (China, Korea)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">PhD</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Sungkyunkwan University</span>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="stat-item">
+                <span class="stat-number">10+</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Years of Research</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5+</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Peer-Reviewed Publications</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">4</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Research Institutions</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">3</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Postdoctoral Positions</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Countries (China, Korea)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">PhD</span>
+                <span class="stat-divider"></span>
+                <span class="stat-label">Sungkyunkwan University</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-tag">About Me</div>
+                <h2 class="section-title">Research Excellence in<br>Nanotechnology</h2>
+                <p class="section-desc">
+                    Bridging fundamental science and applied engineering to develop next-generation electronic devices and sensing systems.
+                </p>
+            </div>
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>
+                        I am a <strong>Postdoctoral Research Fellow</strong> at Xi'an Jiaotong-Liverpool University (XJTLU), where I lead advanced research on 2D materials, molecular electronics, and nanoelectronic device engineering. My work focuses on interfacial phenomena and charge transport at the molecular scale.
+                    </p>
+                    <p>
+                        Previously, I held postdoctoral positions at <strong>Gwangju Institute of Science and Technology (GIST)</strong> and <strong>Sungkyunkwan University (SKKU)</strong>, where I earned my Ph.D. in Mechanical Engineering. I specialized in wafer-scale graphene synthesis, TMD characterization, and flexible substrate fabrication.
+                    </p>
+                    <p>
+                        I am passionate about interdisciplinary innovation, mentoring the next generation of researchers, and translating fundamental nanoscience into transformative technologies for sensing, energy, and next-generation electronics.
+                    </p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-card reveal reveal-delay-1">
+                        <div class="highlight-icon"><i class="fas fa-atom"></i></div>
+                        <div class="highlight-title">2D Materials</div>
+                        <div class="highlight-desc">CVD synthesis of graphene, TMDs, and van der Waals heterostructures for electronic applications.</div>
+                    </div>
+                    <div class="highlight-card reveal reveal-delay-2">
+                        <div class="highlight-icon"><i class="fas fa-microchip"></i></div>
+                        <div class="highlight-title">Molecular Electronics</div>
+                        <div class="highlight-desc">Designing molecular junctions and studying charge transport at the nanoscale.</div>
+                    </div>
+                    <div class="highlight-card reveal reveal-delay-1">
+                        <div class="highlight-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="highlight-title">Energy Systems</div>
+                        <div class="highlight-desc">Solid oxide fuel cells, battery technologies, and electrochemical optimization.</div>
+                    </div>
+                    <div class="highlight-card reveal reveal-delay-2">
+                        <div class="highlight-icon"><i class="fas fa-brain"></i></div>
+                        <div class="highlight-title">AI-Integrated Sensors</div>
+                        <div class="highlight-desc">Smart sensing platforms with machine learning for enhanced device performance.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Focus Section -->
+    <section class="section" id="research" style="background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-tag">Research Focus</div>
+                <h2 class="section-title">Core Research Areas</h2>
+                <p class="section-desc">
+                    Interdisciplinary research spanning synthesis, characterization, and device integration.
+                </p>
+            </div>
+            <div class="research-grid">
+                <div class="research-card reveal reveal-delay-1">
+                    <div class="research-number">01</div>
+                    <div class="research-title">Graphene & TMD Synthesis</div>
+                    <div class="research-desc">Wafer-scale CVD growth of monolayer and few-layer graphene, transition metal dichalcogenides (MoS₂, WS₂), and heterostructure assembly.</div>
+                    <div class="research-tags">
+                        <span class="research-tag">CVD</span>
+                        <span class="research-tag">Raman</span>
+                        <span class="research-tag">AFM</span>
+                    </div>
+                </div>
+                <div class="research-card reveal reveal-delay-2">
+                    <div class="research-number">02</div>
+                    <div class="research-title">Molecular Junction Devices</div>
+                    <div class="research-desc">Fabrication and electrical characterization of molecular-scale junctions for charge transport studies and molecular electronics.</div>
+                    <div class="research-tags">
+                        <span class="research-tag">Nanofabrication</span>
+                        <span class="research-tag">Lithography</span>
+                        <span class="research-tag">Transport</span>
+                    </div>
+                </div>
+                <div class="research-card reveal reveal-delay-3">
+                    <div class="research-number">03</div>
+                    <div class="research-title">Flexible Sensing Systems</div>
+                    <div class="research-desc">Graphene-decorated carbon nanofiber networks for stretchable strain sensors with AI-enhanced signal processing.</div>
+                    <div class="research-tags">
+                        <span class="research-tag">Sensors</span>
+                        <span class="research-tag">Flexible</span>
+                        <span class="research-tag">AI</span>
+                    </div>
+                </div>
+                <div class="research-card reveal reveal-delay-1">
+                    <div class="research-number">04</div>
+                    <div class="research-title">Interfacial Engineering</div>
+                    <div class="research-desc">Adhesion energy modification of graphene on SiO₂ and copper foils, crystallographic dependence studies.</div>
+                    <div class="research-tags">
+                        <span class="research-tag">Adhesion</span>
+                        <span class="research-tag">XPS</span>
+                        <span class="research-tag">KPFM</span>
+                    </div>
+                </div>
+                <div class="research-card reveal reveal-delay-2">
+                    <div class="research-number">05</div>
+                    <div class="research-title">Energy Storage & Conversion</div>
+                    <div class="research-desc">Interface engineering for intermediate-temperature solid oxide fuel cells and advanced battery technologies.</div>
+                    <div class="research-tags">
+                        <span class="research-tag">Fuel Cells</span>
+                        <span class="research-tag">Batteries</span>
+                        <span class="research-tag">SOFC</span>
+                    </div>
+                </div>
+                <div class="research-card reveal reveal-delay-3">
+                    <div class="research-number">06</div>
+                    <div class="research-title">Nanocomposites</div>
+                    <div class="research-desc">Sisal epoxy composites with enhanced fracture toughness through surface treatment and fiber reinforcement.</div>
+                    <div class="research-tags">
+                        <span class="research-tag">Composites</span>
+                        <span class="research-tag">Biomaterials</span>
+                        <span class="research-tag">Mechanical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-tag">Career</div>
+                <h2 class="section-title">Professional Experience</h2>
+                <p class="section-desc">
+                    A decade of research excellence across leading international institutions.
+                </p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">June 2025 – Present</div>
+                    <div class="timeline-role">Postdoctoral Research Fellow</div>
+                    <div class="timeline-org"><i class="fas fa-university"></i> Xi'an Jiaotong-Liverpool University (XJTLU)</div>
+                    <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Suzhou, Jiangsu, China</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Advanced research on 2D materials, molecular electronics, and nanoelectronic device engineering</li>
+                            <li>Design of novel device architectures including molecular junctions and graphene-based devices</li>
+                            <li>Supervision and mentorship of PhD students in graphene adhesion, nanocomposites, and battery tech</li>
+                            <li>Research proposal management for AI-enabled sensors and advanced packaging</li>
+                            <li>International collaboration on semiconductor devices and energy storage systems</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">April 2024 – June 2025</div>
+                    <div class="timeline-role">Postdoctoral Research Fellow</div>
+                    <div class="timeline-org"><i class="fas fa-university"></i> Gwangju Institute of Science and Technology (GIST)</div>
+                    <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Department of Semiconductor Engineering, South Korea</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Synthesized and characterized 2D materials for next-generation semiconductor applications</li>
+                            <li>Developed AI-integrated sensors for enhanced device performance</li>
+                            <li>Mentored junior researchers and collaborated with interdisciplinary teams</li>
+                            <li>Fabricated graphene-based flexible substrates for sensors and devices</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">Nov 2022 – April 2024</div>
+                    <div class="timeline-role">Postdoctoral Research Fellow</div>
+                    <div class="timeline-org"><i class="fas fa-university"></i> Sungkyunkwan University (SKKU)</div>
+                    <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Department of Smart-Fab Technology, Suwon, South Korea</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Cutting-edge research in nanomaterial synthesis and nanoscale characterization</li>
+                            <li>Published in high-impact journals and presented at international conferences</li>
+                            <li>Developed novel nanofabrication techniques and studied interfacial phenomena</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">Aug 2022 – Nov 2022</div>
+                    <div class="timeline-role">Postdoctoral Research Fellow</div>
+                    <div class="timeline-org"><i class="fas fa-university"></i> Sungkyunkwan University (SKKU)</div>
+                    <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> School of Mechanical Engineering, Suwon, South Korea</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Continued PhD research on nanofabrication and interfacial characterization</li>
+                            <li>Advanced characterization tools for 2D material systems</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">July 2017 – Present</div>
+                    <div class="timeline-role">Lecturer</div>
+                    <div class="timeline-org"><i class="fas fa-university"></i> Addis Ababa University</div>
+                    <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Taught mechanical engineering courses to undergraduate and graduate students</li>
+                            <li>Collaborated on interdisciplinary research projects</li>
+                            <li>Mentored students in research methodologies and technical writing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">Sep 2015 – June 2017</div>
+                    <div class="timeline-role">Assistant Lecturer</div>
+                    <div class="timeline-org"><i class="fas fa-university"></i> Addis Ababa University</div>
+                    <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Assisted in delivering mechanical engineering curriculum</li>
+                            <li>Supported laboratory sessions and student projects</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Affiliations -->
+    <section style="padding: 40px 2rem; background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div class="section-container">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <span style="color: var(--text-dim); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Research Affiliations</span>
+            </div>
+            <div class="affiliations-track">
+                <div class="affiliation-item">
+                    <div class="affiliation-logo">XJ</div>
+                    <div class="affiliation-info">
+                        <span class="affiliation-name">XJTLU</span>
+                        <span class="affiliation-role">Current Position</span>
+                    </div>
+                </div>
+                <div class="affiliation-item">
+                    <div class="affiliation-logo">GI</div>
+                    <div class="affiliation-info">
+                        <span class="affiliation-name">GIST</span>
+                        <span class="affiliation-role">Postdoc Fellow</span>
+                    </div>
+                </div>
+                <div class="affiliation-item">
+                    <div class="affiliation-logo">SK</div>
+                    <div class="affiliation-info">
+                        <span class="affiliation-name">SKKU</span>
+                        <span class="affiliation-role">PhD & Postdoc</span>
+                    </div>
+                </div>
+                <div class="affiliation-item">
+                    <div class="affiliation-logo">AA</div>
+                    <div class="affiliation-info">
+                        <span class="affiliation-name">Addis Ababa Univ.</span>
+                        <span class="affiliation-role">Lecturer</span>
+                    </div>
+                </div>
+                <div class="affiliation-item">
+                    <div class="affiliation-logo">UU</div>
+                    <div class="affiliation-info">
+                        <span class="affiliation-name">Unity University</span>
+                        <span class="affiliation-role">Former Lecturer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="section" id="publications">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-tag">Research</div>
+                <h2 class="section-title">Selected Publications</h2>
+                <p class="section-desc">
+                    Peer-reviewed contributions advancing nanomaterials and device engineering.
+                </p>
+            </div>
+            <div class="pubs-grid">
+                <div class="pub-card reveal">
+                    <div class="pub-header">
+                        <div class="pub-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="pub-title">Vertical Graphene-Decorated Carbon Nanofibers for Robust Conductive Networks in Stretchable Strain Sensors</div>
+                    </div>
+                    <div class="pub-journal">Nanotechnology / Advanced Materials</div>
+                    <div class="pub-meta">
+                        <span class="pub-tag">Nanotechnology</span>
+                        <span class="pub-tag">Sensors</span>
+                        <span class="pub-tag">Graphene</span>
+                        <span class="pub-tag">Flexible Electronics</span>
+                    </div>
+                </div>
+                <div class="pub-card reveal">
+                    <div class="pub-header">
+                        <div class="pub-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="pub-title">Interface Engineering to Improve Electrochemical Performance of Intermediate-Temperature Solid Oxide Fuel Cells</div>
+                    </div>
+                    <div class="pub-journal">Energy & Environmental Science</div>
+                    <div class="pub-meta">
+                        <span class="pub-tag">Energy</span>
+                        <span class="pub-tag">Fuel Cells</span>
+                        <span class="pub-tag">Electrochemistry</span>
+                        <span class="pub-tag">SOFC</span>
+                    </div>
+                </div>
+                <div class="pub-card reveal">
+                    <div class="pub-header">
+                        <div class="pub-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="pub-title">Modification of the Adhesion Energy of Monolayer Graphene on SiO₂ Substrates</div>
+                    </div>
+                    <div class="pub-journal">Applied Physics Letters / 2D Materials</div>
+                    <div class="pub-meta">
+                        <span class="pub-tag">2D Materials</span>
+                        <span class="pub-tag">Adhesion</span>
+                        <span class="pub-tag">Interfaces</span>
+                        <span class="pub-tag">Graphene</span>
+                    </div>
+                </div>
+                <div class="pub-card reveal">
+                    <div class="pub-header">
+                        <div class="pub-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="pub-title">Crystallographic Dependence of Adhesion Energy of CVD-Grown Monolayer Graphene on Copper Foils</div>
+                    </div>
+                    <div class="pub-journal">Carbon / ACS Nano</div>
+                    <div class="pub-meta">
+                        <span class="pub-tag">CVD Graphene</span>
+                        <span class="pub-tag">Copper</span>
+                        <span class="pub-tag">Crystallography</span>
+                        <span class="pub-tag">Growth</span>
+                    </div>
+                </div>
+                <div class="pub-card reveal">
+                    <div class="pub-header">
+                        <div class="pub-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="pub-title">Experimental Investigation of Fracture Toughness for Treated Sisal Epoxy Composite</div>
+                    </div>
+                    <div class="pub-journal">Composite Structures / Materials Science</div>
+                    <div class="pub-meta">
+                        <span class="pub-tag">Composites</span>
+                        <span class="pub-tag">Mechanical Properties</span>
+                        <span class="pub-tag">Biomaterials</span>
+                        <span class="pub-tag">Sustainability</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills" style="background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-tag">Expertise</div>
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-desc">
+                    Comprehensive capabilities spanning synthesis, characterization, and device fabrication.
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category reveal reveal-delay-1">
+                    <div class="skill-header">
+                        <div class="skill-icon"><i class="fas fa-atom"></i></div>
+                        <div class="skill-title">Synthesis & Fabrication</div>
+                    </div>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-chevron-right"></i> Chemical Vapor Deposition (CVD)</li>
+                        <li><i class="fas fa-chevron-right"></i> Wafer-Scale Graphene Growth</li>
+                        <li><i class="fas fa-chevron-right"></i> TMD Synthesis (MoS₂, WS₂)</li>
+                        <li><i class="fas fa-chevron-right"></i> Nanofabrication & Lithography</li>
+                        <li><i class="fas fa-chevron-right"></i> Flexible Substrate Fabrication</li>
+                        <li><i class="fas fa-chevron-right"></i> Molecular Junction Assembly</li>
+                    </ul>
+                </div>
+                <div class="skill-category reveal reveal-delay-2">
+                    <div class="skill-header">
+                        <div class="skill-icon"><i class="fas fa-microscope"></i></div>
+                        <div class="skill-title">Characterization</div>
+                    </div>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-chevron-right"></i> Raman Spectroscopy</li>
+                        <li><i class="fas fa-chevron-right"></i> AFM & KPFM</li>
+                        <li><i class="fas fa-chevron-right"></i> SEM & TEM</li>
+                        <li><i class="fas fa-chevron-right"></i> XPS & XRD Analysis</li>
+                        <li><i class="fas fa-chevron-right"></i> Electrical Transport Measurement</li>
+                        <li><i class="fas fa-chevron-right"></i> Surface & Interface Analysis</li>
+                    </ul>
+                </div>
+                <div class="skill-category reveal reveal-delay-3">
+                    <div class="skill-header">
+                        <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div class="skill-title">Research & Development</div>
+                    </div>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-chevron-right"></i> AI-Integrated Sensor Design</li>
+                        <li><i class="fas fa-chevron-right"></i> Electrochemical Systems</li>
+                        <li><i class="fas fa-chevron-right"></i> Battery Technology</li>
+                        <li><i class="fas fa-chevron-right"></i> Data Analysis & Modeling</li>
+                        <li><i class="fas fa-chevron-right"></i> Scientific Writing & Grants</li>
+                        <li><i class="fas fa-chevron-right"></i> Student Mentorship</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-tag">Academia</div>
+                <h2 class="section-title">Education</h2>
+                <p class="section-desc">
+                    Strong academic foundation in mechanical engineering with nanotechnology specialization.
+                </p>
+            </div>
+            <div class="edu-cards">
+                <div class="edu-card reveal reveal-delay-1">
+                    <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="edu-degree">Doctor of Philosophy (Ph.D.)</div>
+                    <div class="edu-field">Mechanical Engineering</div>
+                    <div class="edu-school">Sungkyunkwan University (SKKU)</div>
+                    <div class="edu-year">August 2017 – August 2022</div>
+                </div>
+                <div class="edu-card reveal reveal-delay-2">
+                    <div class="edu-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="edu-degree">Master's Degree</div>
+                    <div class="edu-field">Mechanical Engineering</div>
+                    <div class="edu-school">Addis Ababa University</div>
+                    <div class="edu-year">2015 – 2017</div>
+                </div>
+                <div class="edu-card reveal reveal-delay-3">
+                    <div class="edu-icon"><i class="fas fa-university"></i></div>
+                    <div class="edu-degree">Bachelor's Degree</div>
+                    <div class="edu-field">Mechanical Engineering</div>
+                    <div class="edu-school">Addis Ababa University</div>
+                    <div class="edu-year">2010 – 2015</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section style="padding: 60px 2rem; background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div class="section-container">
+            <div class="section-header reveal" style="margin-bottom: 2rem;">
+                <div class="section-tag">Credentials</div>
+                <h2 class="section-title" style="font-size: 2rem;">Certifications</h2>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <div class="edu-card reveal" style="max-width: 500px; width: 100%; text-align: center;">
+                    <div class="edu-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="edu-degree">Critical Thinking for Better Judgment and Decision-Making</div>
+                    <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">
+                        Professional Development Certification
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-tag">Connect</div>
+                <h2 class="section-title">Let's Collaborate</h2>
+                <p class="section-desc">
+                    Open to research collaborations, speaking engagements, and academic opportunities.
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h3>Get in Touch</h3>
+                    <p>
+                        Whether you're interested in 2D materials research, molecular electronics, 
+                        or interdisciplinary projects at the intersection of nanotechnology and AI, 
+                        I'd love to explore possibilities together.
+                    </p>
+                    <div class="contact-links">
+                        <a href="mailto:yonas.tsegaye23@gmail.com" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-link-text">
+                                <span class="contact-link-label">Email</span>
+                                <span class="contact-link-value">yonas.tsegaye23@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="tel:+821046781421" class="contact-link">
+                            <i class="fas fa-phone"></i>
+                            <div class="contact-link-text">
+                                <span class="contact-link-label">Phone</span>
+                                <span class="contact-link-value">+82 10-4678-1421</span>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/yonas-tsegaye-megra-ph-d-9957b5124" target="_blank" class="contact-link">
+                            <i class="fab fa-linkedin-in"></i>
+                            <div class="contact-link-text">
+                                <span class="contact-link-label">LinkedIn</span>
+                                <span class="contact-link-value">yonas-tsegaye-megra-ph-d</span>
+                            </div>
+                        </a>
+                        <a href="https://sites.google.com/view/yonast/home" target="_blank" class="contact-link">
+                            <i class="fas fa-globe"></i>
+                            <div class="contact-link-text">
+                                <span class="contact-link-label">Personal Site</span>
+                                <span class="contact-link-value">sites.google.com/view/yonast</span>
+                            </div>
+                        </a>
+                        <div class="contact-link" style="cursor: default;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-link-text">
+                                <span class="contact-link-label">Location</span>
+                                <span class="contact-link-value">Suzhou, Jiangsu, China</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form reveal">
+                    <form onsubmit="event.preventDefault(); showToast('Thank you! I will get back to you soon.');">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="Research Collaboration Inquiry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Tell me about your project or inquiry..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div id="toast" style="position: fixed; bottom: 2rem; right: 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; color: var(--text-primary); font-weight: 500; box-shadow: 0 10px 40px rgba(0,0,0,0.4); transform: translateY(100px); opacity: 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 10000; display: flex; align-items: center; gap: 0.75rem;">
+        <i class="fas fa-check-circle" style="color: var(--accent-primary);"></i>
+        <span id="toastMessage">Message sent!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">
+            © 2026 Yonas Tsegaye Megra, Ph.D. Crafted with <span class="footer-heart">♥</span> for science.
+        </p>
+    </footer>
+
+    <script>
+        // Toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.style.transform = 'translateY(0)';
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.transform = 'translateY(100px)';
+                toast.style.opacity = '0';
+            }, 3000);
+        }
+
+        // Mobile menu
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').style.display = 'none';
+        }
+
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            const menu = document.getElementById('mobileMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // Scroll reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 80;
+
+            revealElements.forEach((element) => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+
+            timelineItems.forEach((item) => {
+                const itemTop = item.getBoundingClientRect().top;
+                if (itemTop < windowHeight - elementVisible) {
+                    item.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Navigation scroll effect
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Parallax orbs
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.hero-orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 15;
+                const xOffset = (x - 0.5) * speed;
+                const yOffset = (y - 0.5) * speed;
+                orb.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        });
+
+        // Intersection Observer for better performance
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if (entry.target.classList.contains('timeline-item')) {
+                        entry.target.classList.add('visible');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .timeline-item').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
