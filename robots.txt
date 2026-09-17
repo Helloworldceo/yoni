@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yonas-tsegaye-megra-phd.netlify.app/sitemap.xml
