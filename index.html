@@ -782,6 +782,124 @@
             color: var(--text-secondary);
         }
 
+        .research-figure {
+            margin: -2rem -2rem 1.5rem -2rem;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+            background: var(--bg-surface);
+        }
+
+        .research-figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .research-card:hover .research-figure img {
+            transform: scale(1.06);
+        }
+
+        .research-figure-badge {
+            position: absolute;
+            top: 0.85rem;
+            left: 0.85rem;
+            width: 32px; height: 32px;
+            border-radius: 9px;
+            background: rgba(12, 15, 14, 0.75);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+        }
+
+        .research-figure-expand {
+            position: absolute;
+            bottom: 0.75rem;
+            right: 0.75rem;
+            width: 30px; height: 30px;
+            border-radius: 8px;
+            background: rgba(12, 15, 14, 0.75);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 0.78rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .research-card:hover .research-figure-expand {
+            opacity: 1;
+        }
+
+        /* ========== LIGHTBOX ========== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 8, 7, 0.92);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 20000;
+            padding: 3rem 1.5rem;
+            cursor: zoom-out;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: min(1100px, 92vw);
+            max-height: 78vh;
+            border-radius: 12px;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.6);
+            cursor: default;
+        }
+
+        .lightbox-caption {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent-primary);
+            color: var(--bg-deep);
+        }
+
         /* ========== TIMELINE ========== */
         .timeline {
             position: relative;
@@ -1770,7 +1888,11 @@
             </div>
             <div class="research-grid">
                 <div class="research-card reveal reveal-delay-1">
-                    <div class="research-number">01</div>
+                    <div class="research-figure" onclick="openLightbox('research-01-2d-interfaces.jpg', 'Molecularly Engineered 2D Interfaces')">
+                        <span class="research-figure-badge">01</span>
+                        <img src="research-01-2d-interfaces.jpg" alt="Molecularly Engineered 2D Interfaces — research figure" loading="lazy">
+                        <span class="research-figure-expand"><i class="fas fa-expand"></i></span>
+                    </div>
                     <div class="research-title">Molecularly Engineered 2D Interfaces</div>
                     <div class="research-desc">Molecular/2D-material interfaces, interfacial charge transfer, molecular anchoring, electronic coupling, and defect engineering.</div>
                     <div class="research-tags">
@@ -1780,7 +1902,11 @@
                     </div>
                 </div>
                 <div class="research-card reveal reveal-delay-2">
-                    <div class="research-number">02</div>
+                    <div class="research-figure" onclick="openLightbox('research-02-quantum-molecular.jpg', 'Quantum & Molecular Electronics')">
+                        <span class="research-figure-badge">02</span>
+                        <img src="research-02-quantum-molecular.jpg" alt="Quantum & Molecular Electronics — research figure" loading="lazy">
+                        <span class="research-figure-expand"><i class="fas fa-expand"></i></span>
+                    </div>
                     <div class="research-title">Quantum & Molecular Electronics</div>
                     <div class="research-desc">Single-molecule junctions, molecular conductance, quantum interference, and mechanically/electrically controlled molecular electronic states.</div>
                     <div class="research-tags">
@@ -1790,7 +1916,11 @@
                     </div>
                 </div>
                 <div class="research-card reveal reveal-delay-3">
-                    <div class="research-number">03</div>
+                    <div class="research-figure" onclick="openLightbox('research-03-2d-semiconductor.jpg', '2D Semiconductor Nanoelectronics')">
+                        <span class="research-figure-badge">03</span>
+                        <img src="research-03-2d-semiconductor.jpg" alt="2D Semiconductor Nanoelectronics — research figure" loading="lazy">
+                        <span class="research-figure-expand"><i class="fas fa-expand"></i></span>
+                    </div>
                     <div class="research-title">2D Semiconductor Nanoelectronics</div>
                     <div class="research-desc">Graphene, MoS₂, WS₂, WSe₂, and 2D heterostructures for transistors, photodetectors, sensors, and emerging device architectures.</div>
                     <div class="research-tags">
@@ -1800,7 +1930,11 @@
                     </div>
                 </div>
                 <div class="research-card reveal reveal-delay-1">
-                    <div class="research-number">04</div>
+                    <div class="research-figure" onclick="openLightbox('research-04-interface-mechanics.jpg', 'Nanoscale Interface Mechanics')">
+                        <span class="research-figure-badge">04</span>
+                        <img src="research-04-interface-mechanics.jpg" alt="Nanoscale Interface Mechanics — research figure" loading="lazy">
+                        <span class="research-figure-expand"><i class="fas fa-expand"></i></span>
+                    </div>
                     <div class="research-title">Nanoscale Interface Mechanics</div>
                     <div class="research-desc">Adhesion, cohesion, fracture, transfer, delamination, and self-healing interactions in large-area 2D materials.</div>
                     <div class="research-tags">
@@ -1810,7 +1944,11 @@
                     </div>
                 </div>
                 <div class="research-card reveal reveal-delay-2">
-                    <div class="research-number">05</div>
+                    <div class="research-figure" onclick="openLightbox('research-05-ai-enabled.jpg', 'AI-Enabled Materials & Devices')">
+                        <span class="research-figure-badge">05</span>
+                        <img src="research-05-ai-enabled.jpg" alt="AI-Enabled Materials & Devices — research figure" loading="lazy">
+                        <span class="research-figure-expand"><i class="fas fa-expand"></i></span>
+                    </div>
                     <div class="research-title">AI-Enabled Materials & Devices</div>
                     <div class="research-desc">AI-assisted materials research, data-driven analysis, and integration of advanced materials with intelligent sensing architectures.</div>
                     <div class="research-tags">
@@ -1820,7 +1958,11 @@
                     </div>
                 </div>
                 <div class="research-card reveal reveal-delay-3">
-                    <div class="research-number">06</div>
+                    <div class="research-figure" onclick="openLightbox('research-06-device-integration.jpg', 'Semiconductor Device Integration')">
+                        <span class="research-figure-badge">06</span>
+                        <img src="research-06-device-integration.jpg" alt="Semiconductor Device Integration — research figure" loading="lazy">
+                        <span class="research-figure-expand"><i class="fas fa-expand"></i></span>
+                    </div>
                     <div class="research-title">Semiconductor Device Integration</div>
                     <div class="research-desc">2D-material-based multi-bridge-channel complementary field-effect transistors, photodetectors, and emerging nanoelectronic architectures.</div>
                     <div class="research-tags">
@@ -2406,6 +2548,13 @@
         <span id="toastMessage">Message sent!</span>
     </div>
 
+    <!-- Image Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close"><i class="fas fa-times"></i></button>
+        <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+        <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <p class="footer-text">
@@ -2426,6 +2575,24 @@
                 toast.style.opacity = '0';
             }, 3000);
         }
+
+        // Image lightbox for research figures
+        function openLightbox(src, caption) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxImg').alt = caption;
+            document.getElementById('lightboxCaption').textContent = caption;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
 
         // Contact form (Netlify Forms, submitted via AJAX)
         function handleContactSubmit(e) {
