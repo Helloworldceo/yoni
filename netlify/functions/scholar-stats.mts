@@ -3,7 +3,7 @@ import type { Config } from "@netlify/functions";
 
 const SCHOLAR_AUTHOR_ID = "F8AtOioAAAAJ";
 const CACHE_KEY = "stats";
-const MAX_AGE_MS = 20 * 60 * 60 * 1000; // 20 hours — refresh at most a few times a day
+const MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days — weekly refresh
 const FETCH_TIMEOUT_MS = 12000;
 
 // Baked-in fallback, matching the numbers on the CV as of Sept 2026.
