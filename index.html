@@ -1766,22 +1766,22 @@
     <div class="stats-section">
         <div class="stats-track">
             <div class="stat-item">
-                <span class="stat-number">511</span>
+                <span class="stat-number" data-stat="citations">511</span>
                 <span class="stat-divider"></span>
                 <span class="stat-label">Google Scholar Citations</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">482</span>
+                <span class="stat-number" data-stat="citations-since">482</span>
                 <span class="stat-divider"></span>
-                <span class="stat-label">Citations Since 2021</span>
+                <span class="stat-label" data-stat="citations-since-label">Citations Since 2021</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">11</span>
+                <span class="stat-number" data-stat="h-index">11</span>
                 <span class="stat-divider"></span>
                 <span class="stat-label">h-index</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">12</span>
+                <span class="stat-number" data-stat="i10-index">12</span>
                 <span class="stat-divider"></span>
                 <span class="stat-label">i10-index</span>
             </div>
@@ -1797,22 +1797,22 @@
             </div>
             <!-- Duplicate for seamless loop -->
             <div class="stat-item">
-                <span class="stat-number">511</span>
+                <span class="stat-number" data-stat="citations">511</span>
                 <span class="stat-divider"></span>
                 <span class="stat-label">Google Scholar Citations</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">482</span>
+                <span class="stat-number" data-stat="citations-since">482</span>
                 <span class="stat-divider"></span>
-                <span class="stat-label">Citations Since 2021</span>
+                <span class="stat-label" data-stat="citations-since-label">Citations Since 2021</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">11</span>
+                <span class="stat-number" data-stat="h-index">11</span>
                 <span class="stat-divider"></span>
                 <span class="stat-label">h-index</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">12</span>
+                <span class="stat-number" data-stat="i10-index">12</span>
                 <span class="stat-divider"></span>
                 <span class="stat-label">i10-index</span>
             </div>
@@ -2493,7 +2493,7 @@
                             <i class="fas fa-graduation-cap"></i>
                             <div class="contact-link-text">
                                 <span class="contact-link-label">Google Scholar</span>
-                                <span class="contact-link-value">511 citations · h-index 11</span>
+                                <span class="contact-link-value" data-stat="scholar-summary">511 citations · h-index 11</span>
                             </div>
                         </a>
                         <a href="https://sites.google.com/view/yonast/home" target="_blank" class="contact-link">
@@ -2594,6 +2594,38 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeLightbox();
         });
+
+        // Live Google Scholar stats (self-updating via serverless function + SerpApi)
+        // Falls back silently to the static numbers already in the HTML if the fetch fails.
+        (function () {
+            fetch('/api/scholar-stats')
+                .then((r) => (r.ok ? r.json() : Promise.reject(new Error('bad response'))))
+                .then((data) => {
+                    if (!data || typeof data.citations !== 'number') return;
+
+                    document.querySelectorAll('[data-stat="citations"]').forEach((el) => {
+                        el.textContent = data.citations.toLocaleString();
+                    });
+                    document.querySelectorAll('[data-stat="citations-since"]').forEach((el) => {
+                        el.textContent = data.citationsSince.toLocaleString();
+                    });
+                    document.querySelectorAll('[data-stat="citations-since-label"]').forEach((el) => {
+                        el.textContent = 'Citations Since ' + data.sinceYear;
+                    });
+                    document.querySelectorAll('[data-stat="h-index"]').forEach((el) => {
+                        el.textContent = data.hIndex;
+                    });
+                    document.querySelectorAll('[data-stat="i10-index"]').forEach((el) => {
+                        el.textContent = data.i10Index;
+                    });
+                    document.querySelectorAll('[data-stat="scholar-summary"]').forEach((el) => {
+                        el.textContent = data.citations.toLocaleString() + ' citations · h-index ' + data.hIndex;
+                    });
+                })
+                .catch(() => {
+                    // Keep the static fallback numbers already rendered in the HTML.
+                });
+        })();
 
         // Contact form (Netlify Forms, submitted via AJAX)
         function handleContactSubmit(e) {
